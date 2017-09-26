@@ -1,0 +1,49 @@
+<!-- if condition -->
+<hr>
+<h5> - If</h5>
+
+<div *ngIf="haveAuthors() === true then authorsList else noAuthors"></div>
+
+<ng-template #authorsList>
+    <h3>Here's a list of Authors:</h3>
+    <ul>
+         <li *ngFor="let author of authors">{{ author }}</li> 
+    </ul>
+</ng-template>
+<ng-template #noAuthors>
+    No authors found
+</ng-template>
+
+
+<hr>
+<h5> - Switch Case</h5>
+<!-- switch case -->
+
+<ul class="nav nav-pills">
+        <li class="nav-item" (click)="viewMode = 'map'" >
+          <a [class.active]="viewMode == 'map'" class="nav-link">Map View</a>
+        </li>
+        <li class="nav-item" (click)="viewMode = 'list'">
+          <a  [class.active]="viewMode == 'list'" class="nav-link">List View</a>
+        </li> 
+</ul>   
+
+<div [ngSwitch]="viewMode">
+<div *ngSwitchCase="'map'">Map View Content</div>
+<div *ngSwitchCase="'list'">List View Content</div>
+<div *ngSwitchDefault>Otherwise</div>
+</div>
+
+<hr>
+
+<h5> - For</h5>
+<!-- ngFor -->
+<button (click)="onAdd()" class="btn btn-primary">Add</button>
+<ul>
+    <li *ngFor="let course of courses; even as isEven">
+        {{ course.name }} <span *ngIf="isEven"></span>
+        <button (click)="onRemove(course)" class="btn btn-danger">Remove</button>
+        <br>
+        <br>
+    </li>
+</ul>
